@@ -1,0 +1,51 @@
+Class-48 (Laravel Installation) 
+================================
+Laravel => MVC (Model View Controller)
+
+Note: 
+1. Laravel Installation  (work 10
+2. Laravel 10 default MySQL
+3. Laravel 11 default MySQL light
+4. composer _v (checked)
+
+============================
+Laravel (Framework-PHP)
+laravel.com
+laravel 10 by default -DB MySQL
+laravel 11 by default -DB sqlight
+
+https://laravel.com/docs/10.x/installation
+https://laravel.com/docs/10.x/installation?fbclid=IwZXh0bgNhZW0CMTAAAR1tj9TpvvbEaqCx3dLaHzuV-zjhaZ2EayM43UsOiwkaifJMF76dTqDz31A_aem_HoEw7rfIsc1RNysc6VGFog
+-----------------------------------------------
+1. E-commerce
+2. Others
+
+========
+laravel 10 by default -DB MySQL
+Databases and Migrations
+//DB_CONNECTION=sqlite  for laravel 11
+DB_CONNECTION=mysql 
+DB_HOST=127.0.0.1 
+DB_PORT=3306 
+DB_DATABASE=laravel 
+DB_USERNAME=root 
+DB_PASSWORD= 
+
+
+github >>> 
+name :
+no need to readme file and add gitignore>>>> Laravel/none/No Need*****
+========================
+now install laravel 10.x
+
+Creating a Laravel Project >>> copy and paste git bash
+>>> composer create-project laravel/laravel:^10.0 example-app
+
+php artisan serve
+==========================
+Copy all data folder from example-app folder and paste it main project file
+>>>ok
+
+Laravel project on >>> git bash >>> php artisan serve ....
+
+

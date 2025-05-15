@@ -48,7 +48,7 @@ http request (url) =>>>
 
 *****function k ja bola hobe se tai dekhabe... blade page ar maddhome
 *****Search Laravel Pack Extension and install to easily use laravel
-----------------------------------------------
+--------------------------------------------------------------------------
 
 All model/Table >>> App >>> models
 All Page >>> resources >>> views
@@ -72,7 +72,7 @@ url >>>routes/url>>>web.php >>>
 
 
 
-make a controller >>> php artisan make:controller HomeController
+*****Make a controller >>> php artisan make:controller HomeController
 
 HomeController a akta function likte hobe.
 
@@ -101,8 +101,8 @@ public function contact (){
 
 
 
-Web.php
---------
+*****Web.php
+------------
 
 // http request (url) =>>> 
 Route::get('/',[HomeController::class,'index']);

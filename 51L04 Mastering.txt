@@ -18,6 +18,7 @@ views >>> master.blade.php   (cut index.blade.php code and paste it in master.bl
 
 master.blade.php (index.blade.php part) >>> @include('master') >>>index.blade.php >>> @include('master') 
 
+
 ******master.blade.php
 <!DOCTYPE html>
 <html>
@@ -50,7 +51,17 @@ master.blade.php (index.blade.php part) >>> @include('master') >>>index.blade.ph
   Main Content without <main>
 @endsection
 ------------
-g. Header Shop Page >>> 
+
+40.00 Min
+g. shop page >>> laravel strucrure Mastering
+Header>>> Shop Page >>>  http://127.0.0.1:8000/shop.html >>> 
+*****Route
+*****linkup
+*****function
+*****blade page 
+
+h. Home page linkup
+
  
 ---------------------------------------------------------
 working part list
@@ -173,11 +184,12 @@ Main words Section remove from index.blade.php
 
 -----------------------
 /////////////////////////////
+40.00 Min
 Now New Page >>> Shop Page
 Create web.php >>> url >>> 
 Route::get('/shop',[FrontendController::class,'shop'])
 
-includes >>>header
+includes >>>header.blade.php
  <li class="dynamic-page-list-item">
                             {{-- <a href="shop.html" class="dynamic-page-list-item-link">
                                 Shop

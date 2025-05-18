@@ -16,22 +16,22 @@
                         </h4>
                         <ul class="footer__list">
                             <li class="footer__list-item">
-                                <a href="privacy-policy.html" class="footer__list-item-link">
+                                <a href="{{url('/privacy-policy')}}" class="footer__list-item-link">
                                     Privacy Policy
                                 </a>
                             </li>
                             <li class="footer__list-item">
-                                <a href="#" class="footer__list-item-link">
+                                <a href="{{url('/terms-conditions')}}" class="footer__list-item-link">
                                     Terms & Conditions
                                 </a>
                             </li>
                             <li class="footer__list-item">
-                                <a href="#" class="footer__list-item-link">
+                                <a href="{{url('/refund-policy')}}" class="footer__list-item-link">
                                     Refund Policy
                                 </a>
                             </li>
                             <li class="footer__list-item">
-                                <a href="#" class="footer__list-item-link">
+                                <a href="{{url('/payment-policy')}}" class="footer__list-item-link">
                                     Payment Policy
                                 </a>
                             </li>
@@ -49,7 +49,7 @@
                                     Address:                                   
                                 </p>
                                 <p class="footer__contact-info-list-item-value">
-                                    Uttara, Dhaka                                 
+                                    Hazaribag,Dhaka                                
                                 </p>
                             </li>
                             <li class="footer__contact-info-list-item">
@@ -57,7 +57,7 @@
                                     Phone:                                   
                                 </p>
                                 <a href="tel:0123456857" class="footer__contact-info-list-item-value">
-                                    0123456857
+                                    01710490345
                                 </a>
                             </li>
                             <li class="footer__contact-info-list-item">
@@ -65,7 +65,7 @@
                                     Email:                                   
                                 </p>
                                 <a href="mailto:info@gmail.com" class="footer__contact-info-list-item-value">
-                                    info@gmail.com
+                                    provash20cb@gmail.com
                                 </a>
                             </li>
                         </ul>
@@ -78,12 +78,12 @@
                         </h4>
                         <ul class="footer__list">
                             <li class="footer__list-item">
-                                <a href="#" class="footer__list-item-link">
+                                <a href="{{url('/about-us')}}" class="footer__list-item-link">
                                     About Us
                                 </a>
                             </li>
                             <li class="footer__list-item">
-                                <a href="#" class="footer__list-item-link">
+                                <a href="{{url('/contact-us')}}" class="footer__list-item-link">
                                     Contact Us
                                 </a>
                             </li>
@@ -135,8 +135,8 @@
     <div class="footer__bottom-wrapper">
         <div class="container">
             <p class="footer__bottom-text">
-                © 2024, All rights reserved
-                <strong class="text-brand">Nitto Mart</strong>
+                © 2024, All Rights Reserved
+                <strong class="text-brand">Ecom</strong>
             </p>
         </div>
     </div>

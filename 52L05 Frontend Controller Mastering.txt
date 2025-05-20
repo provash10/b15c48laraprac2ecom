@@ -5,13 +5,15 @@ Note: Mastering
 subcategory-products,view-cart,checkout)
 
 2. Footer Part Mastering (privacy-policy,terms-conditions,refund-policy,
-payment-policy,about-us, contact-us ->>>****form****, product-details,
+payment-policy,about-us, contact-us ->>>****form****, product-details,type-products
 
 product-details page any >>>http://127.0.0.1:8000/details.html
 details page link up home page>>>index.blade.php >>> hot, new, etc...
 not add to cart linkup
 
 Categories >>> index.blade.php linkup >>> /category-products
+
+view all >>> linkup, function....ok
 -----------------------------------------------------------------------
 working part
 1. return-process mastering ok

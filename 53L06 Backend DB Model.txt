@@ -1,15 +1,21 @@
 Class-53 (Laravel-6)
-Backend >>>>Database by phpmyadmin
+Backend >>>>Model->Database by phpmyadmin
+Frontend >>>Controller
 ===================================
 Note:
 *****Database >>> Model and vs >>> controller
 *****Database a Migration File add Thake
+
 1. Create a new Database from phpmyadmin
 *****Database k Project ar sathe connect korte hoi*****vs code >>>env file
-2. Create Table like Category(Table) with migration file
+2. Create Model (Table) like Category(Model/Table) with migration file
+****Migration >>> data save thake
+****Database Design >>> ki ki category thakbe / ki ki data lagbe  - depends on website design
+****Migrate Command ok
 
-
-
+28.00 Min
+3.Create Model (Table) like SubCategory(Model/Table) with migration file
+*****subcategory kono akta Category ar under e thake >> seta dorte hobe.
 
 -------------------------
 Working Part

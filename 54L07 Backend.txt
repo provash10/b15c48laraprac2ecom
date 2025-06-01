@@ -10,6 +10,13 @@ Steps To Install Laravel UI >>> $ composer require laravel/ui
 
 ***from git bash >>>command >>> $ composer require laravel/ui
 
+*****web.php te create hobe admin panel 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
 Please run [npm install && npm run dev] to compile your fresh scaffolding command.
  npm= nodejs package manager
 
@@ -180,7 +187,7 @@ http://127.0.0.1:8000/login dekhar jonno 2 ta command run korte hobe
 not work after npm run dev
 check >> http://127.0.0.1:8000/login >>ok
 ------------------------------------
-55.00 min
+55.00 minl
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -193,6 +200,7 @@ users>>>>insert >>>
 password >>> Hash Method >>> hash password generator >>> https://bcrypt.online/
 
 *****57.00 min
+********http://127.0.0.1:8000/login
 local host >>> email create for user admin
 localhost/phpmyadmin >>>DB>>>batch_15_ecom_1 >>> users>>> insert >>>
 name >>> admin
@@ -201,3 +209,8 @@ password >>> (encrypted thake) - Google>>>Hash Method use >>>
 hash method for password (https://bcrypt.online/)
 >>>  encrypted password
 >>> Go >>> OK
+
+
+admin
+admin@admin.com
+12345678

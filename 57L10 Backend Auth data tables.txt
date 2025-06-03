@@ -1,5 +1,12 @@
 Class-57 (Laravel-10)…
 -----------------------
+Note:
+1. Delete 
+2. Sidebar Edit
+3. Data Table >>> datatable css and js code setup
+4. Data Table Editing Process ok
+
+----------------------------------------
 Working Part
 1. delete something of dashboard which not need
 
@@ -8,6 +15,19 @@ Working Part
 3. navbar edit
 
 4. sidebar edit and create new option
+Sidebar
+1. Credentials
+a. Logout
+b. Update Credentials
+
+2. Categories
+a. List
+b. 
+
+3. Sub Categories
+a. 
+b.
+
 
 5. phpmyadmin >>>categories >>>> insert list 
 

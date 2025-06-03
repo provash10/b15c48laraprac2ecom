@@ -37,3 +37,5 @@ Route::get('/admin/logout',[AdminController::class, 'adminLogout']);
 
 //Categories
 Route::get('/admin/category/list',[CategoryController::class, 'categoryList']);
+Route::get('/admin/category/create',[CategoryController::class, 'categoryCreate']);
+Route::post('/admin/category/store',[CategoryController::class, 'categoryStore']);

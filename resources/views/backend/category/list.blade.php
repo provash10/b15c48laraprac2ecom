@@ -38,24 +38,26 @@
                   <tr>
                     <th>Serial No</th>
                     <th>Category Name</th>
-                    <th>IMage</th>
-                    <th>Action</th>
-                    
+                    <th>Image</th>
+                    <th>Action</th>      
                   </tr>
                   </thead>
+
                   <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Test Name</td>
+                 {{-- use loop $categories --}}
+                 @foreach ($categories as $category)
+                    <tr>
+                    <td>{{$loop->index+1}}</td>
+                    <td>{{$category->name}}</td>
                     <td>
-                        <img src="">
+                        <img src="{{asset($category->image)}}">
                     </td>
                     <td> 
                         <a href="#" class="btn btn-primary">Edit</a>
                         <a href="#" class="btn btn-danger">Delete</a>
                     </td>
-                    <td>X</td>
                   </tr>
+                 @endforeach
                   </tbody>
                 </table>
               </div>

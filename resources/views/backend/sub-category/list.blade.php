@@ -36,27 +36,28 @@
                                     <thead>
                                         <tr>
                                             <th>Serial No</th>
+                                            <th>Sub-Category Name</th>
                                             <th>Category Name</th>
-                                            <th>Image</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {{-- use loop $categories --}}
-                                        @foreach ($categories as $category)
+                                        @foreach ($subCategories as $subcategory)
                                             <tr>
                                                 <td>{{$loop->index+1}}</td>
-                                                <td>{{$category->name}}</td>
+                                                <td>{{$subcategory->name}}</td>
+                                                <td>{{$subcategory->cat_id}}</td>
                                                 <td>
                                                     {{-- <img src="{{asset($category->image)}}"> --}}
-                                                    <img src="{{asset('backend/images/category/'.$category->image)}}"
+                                                    <img src="{{asset('backend/images/category/'.$subcategory->image)}}"
                                                         height="100" weight="100">
                                                 </td>
                                                 <td>
-                                                    <a href="{{url('/admin/category/edit/'.$category->id) }}"
+                                                    <a href="#"
                                                         class="btn btn-primary">Edit</a>
                                                     {{-- <a href="{{url('/admin/category/delete/{id}')}}" class="btn btn-danger">Delete</a> --}}
-                                                    <a href="{{url('/admin/category/delete/'.$category->id) }}"
+                                                    <a href="#"
                                                         onclick="return confirm('Are You Sure!!!')"
                                                         class="btn btn-danger">Delete</a>
                                                 </td>

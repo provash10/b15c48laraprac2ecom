@@ -44,20 +44,15 @@ class CategoryController extends Controller
    }
 
    public function categoryDelete($id){
-
     $category = category::find($id);
     // dd($category);
-
     // public folder image Delete
     if($category->image && file_exists('backend/images/category/'.$category->image)){
         unlink('backend/images/category/'.$category->image);
     }
-
     // DB Image Delete
-     $category->delete ();
-     
+     $category->delete (); 
      return redirect()->back();
-
    }
 
    public function categoryEdit($id){
@@ -66,11 +61,11 @@ class CategoryController extends Controller
     return view('backend.category.edit',compact('category'));
    }
 
-   public function categoryUpdate(Request $request,$id){
+   public function categoryUpdate(Request $request, $id){
     $category = category::find($id);
     // dd($category);
     $category->name = $request->name;
-    $category->slug =Str::slug ($request->name);
+    $category->slug =Str::slug($request->name);
 
     if(isset($request->image)){
         if($category->image && file_exists('backend/images/category/'.$category->image)){
@@ -81,11 +76,8 @@ class CategoryController extends Controller
         $request->image->move('backend/images/category/',$imageName);
 
         $category->image = $imageName;
-
     }
-    $category->save();
+     $category->save();
     return redirect()->back();
-
    }
-
 }

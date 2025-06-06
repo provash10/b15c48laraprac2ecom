@@ -1,5 +1,7 @@
 Class-59 (Laravel-12)
-Backend CRUD >>> Delete and Update
+Auth - Data Table 3 @category Design ->CRUD 03..
+
+Backend CRUD >>> Delete and Edit/Update
 ---------------------------------
 Note:
 1. image upload properly 2 way 1. public folder 2. Database
@@ -21,7 +23,7 @@ Note:
 
     // DB Image Delete
      $category->delete ();
-3. edit 40 min
+3. EditUpdate 40 min
 
 -----------------------
 Q****name attribute input field

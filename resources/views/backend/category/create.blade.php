@@ -37,15 +37,15 @@
                               @csrf
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="name">Category Name</label>
+                                        <label for="name">Category Name*</label>
                                         <input type="name" class="form-control" name="name" id="name" placeholder="Enter Category Name" required>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label for="image">Category Image</label>
+                                        <label for="image">Category Image*</label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" name="image" id="image" accept="image/*">
+                                                <input type="file" class="custom-file-input" name="image" id="image" accept="image/*" required>
                                                 <label class="custom-file-label" for="image">Choose file</label>
                                             </div>
                                             <div class="input-group-append">

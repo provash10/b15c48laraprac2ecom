@@ -230,4 +230,5 @@ list.blade.php te
 backend>>>master.blade.php >>> use >>> @stack('script')
 -------------------------------------------------------
 
-Edit the admin Panel >>> backend>>> list.blade.php >>> CRUD System Use....OK 
+Edit the admin Panel >>> backend>>> list.blade.php 
+>>> CRUD System Use....OK 

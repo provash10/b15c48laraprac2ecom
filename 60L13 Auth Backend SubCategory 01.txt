@@ -1,5 +1,10 @@
 Class-60 (Laravel-13)
 -------------------------------------
+Note:
+1. Create Subcategory
+
+
+---------------------------------------------
 Before Work Backend (class59 l-12)
 Category>>> a. create.blade.php  b. edit.blade.php  c. list.blade.php
 Working Part

@@ -37,6 +37,7 @@
                                         <tr>
                                             <th>Serial No</th>
                                             <th>Sub-Category Name</th>
+                                            <th>Category Id</th>
                                             <th>Category Name</th>
                                             <th>Action</th>
                                         </tr>
@@ -48,6 +49,7 @@
                                                 <td>{{$loop->index+1}}</td>
                                                 <td>{{$subcategory->name}}</td>
                                                 <td>{{$subcategory->cat_id}}</td>
+                                                <td>{{$subcategory->category->name}}</td>
                                                 <td>
                                                     {{-- <img src="{{asset($category->image)}}"> --}}
                                                     <img src="{{asset('backend/images/category/'.$subcategory->image)}}"

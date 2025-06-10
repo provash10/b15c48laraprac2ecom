@@ -1,0 +1,621 @@
+Class-67 (Laravel-19)
+======================
+Note:
+1. Color
+*****jquery structure
+<script>
+        $(document).ready(function(){
+            
+        })
+    </script>
+
+                                  {{-- Multiple Color --}}
+                                    <div class="form-group" id="color_fields">
+                                        <label for="name">Product Color(Optional)</label>
+                                        <input type="text" class="form-control" name="color[]" id="color" placeholder="Enter Product Color">    
+                                    </div>
+                                        <button type="button" class="btn btn-primary" id="add_color">Add More</button>
+
+{{-- add color By jQuery --}}
+<script>
+    $(document).ready(function(){
+        $("#add_color").click(function(){
+            $("#color_fields").append('<input type="text" class="form-control" name="color[]" id="color" placeholder="Enter Product Color">')
+        })
+    })
+</script>
+---------------
+2. Size Copy from Color wirh jQuery code....ok\
+3. GalleryImage copy from image and edit name with attributes and add multiple...
+
+
+-----------------------------
+*****Product more parameter like as color,size, gallary image etc
+
+*****backend>>>>includes>>> create.blade.php
+***** there is no option of color id in phpmyadmin
+***** need js for many color
+
+>>>copy quantity and paste before quanty and edit for color.
+1. 
+{{-- Product Color --}}
+ <div class="form-group">
+      <label for="name">Product Color (Optional)</label>
+      <input type="text" class="form-control" name="color" id="color" placeholder="Enter Product Color">
+ </div>
+
+2. div id="color_fields", button id="add_color, input-> name="color[]" use button->  <button type="button" class="btn btn-primary" id="add_color">Add More</button>
+
+{{-- Product Color --}}
+ <div class="form-group" id="color_fields">
+      <label for="name">Product Color (Optional)</label>
+      <input type="text" class="form-control" name="color" id="color" placeholder="Enter Product Color">
+ </div>
+ <button type="button" class="btn btn-primary" id="add_color">Add More</button>
+
+OR----------------------OR-------------------------OR
+                                    {{-- Product Color --}}
+                                    <div class="form-group" id="color_fields">
+                                        <label for="name">Product Color (Optional)</label>
+                                        <input type="text" class="form-control" name="color[]" id="color" placeholder="Enter Product Color">
+                                        //<button type="button" class="btn btn-primary" id="add_color">Add More</button>
+                                    </div>
+                                     <button type="button" class="btn btn-primary" id="add_color">Add More</button>
+
+3. write js in under specific js code.... *****13.00 min important
+***** add color by js/jquery add more click korle barbar color div auto incrise hobe
+*****jquery structure
+<script>
+        $(document).ready(function(){
+            
+        })
+    </script>
+----------------
+3.1. Use div id="color_fields", button id="add_color, input-> name="color[]" use button->  <button type="button" class="btn btn-primary" id="add_color">Add More</button>
+
+ {{-- Add Color -> use jquery/js--}}
+    <script>
+        $(document).ready(function(){
+            $("#add_color").click(function(){
+                $("#color_fields").append('<input type="text" class="form-control" name="color[]" id="color" placeholder="Enter Product Color">')
+            })
+        })
+    </script>
+-------------
+*****23.00 min
+
+                   {{-- For Size  --}}
+                                    {{-- Product Size --}}
+                                    <div class="form-group" id="color_fields">
+                                        <label for="name">Product Color (Optional)</label>
+                                        <input type="text" class="form-control" name="color[]" id="color" placeholder="Enter Product Color">
+                                        {{-- <button type="button" class="btn btn-primary" id="add_color">Add More</button> --}}
+                                    </div>
+                                    <button type="button" class="btn btn-primary" id="add_color">Add More</button>
+                                    
+For Size copy Color Code For Size
+
+{{-- Add Size -> use jquery/js--}}
+    <script>
+        $(document).ready(function(){
+            $("#add_size").click(function(){
+                $("#size_fields").append('<input type="text" class="form-control" name="size[]" id="size" placeholder="Enter Product Size">')
+            })
+        })
+    </script>
+
+>>>>>>>>>>>Check product >>> add field >>>>ok
+
+*****29.00 min >>>>>>>>
+
+5. For Multiple Image >>> Copy the product image code for multiple image 
+**** no need add more
+**** use variable - input >>> name="galleryImage[]" , use ****multiple attributes
+
+ {{-- For Multiple Product Image --}}
+                                      <div class="form-group">
+                                        <label for="exampleInputFile">Product Gallery Image*</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="galleryImage[]" multiple
+                                                    id="galleryImage" accept="image/*" required>
+                                                <label class="custom-file-label" for="image">Choose file</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Upload</span>
+                                            </div>
+                                        </div>
+                                    </div
+
+---------------------------------------
+31.00 Min
+Now this create.blade.php design k database add korte hobe.....
+****Database a insert korar jonno got to >>> ProductController.php
+So,
+productStore a kaj korte hobe ....Form submit hole 
+******<form action="{{ url('/admin/product/store')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+action="{{ url('/admin/product/store')}}" url a hit korbe and productStore call hobe
+
+*****color, size alada alada table add hobe According to Database .......
+*****color ti kon product ar jonno and color name?
+*****kono product upload korle DB Color ar under a thake hobe.
+*****$color->product_id = $product->id; product id Form theke asbe na ... jeti save hobe seti back hoye asbe.
+*****  // $product->save();
+
+        // Add Color
+        dd($request->color);
+        $color = new Color();
+
+        $color->product_id = $product->id;
+        $color->color_name = $request->color;
+
+
+        return redirect()->back();
+
+*****use foreach loop of Color and size
+
+
+ // $product->save();
+
+        // Add Color
+        // dd($request->color);
+        // $color = new Color();
+
+        foreach($request->color as $color_name){
+            $color = new Color();
+
+            $color->product_id = $product->id;
+            // $color->color_name = $request->color;
+            $color->color_name = $color_name;
+
+            $color->save();
+        }
+
+        // $color->product_id = $product->id;
+        // $color->color_name = $request->color;
+
+        // Add Size 
+        foreach($request->size as $size_name){
+            $size = new Size();
+
+            $size->product_id = $product->id;
+            // $size->size_name = $request->size;
+            $size->size_name = $size_name;
+
+            $size->save();
+        }
+
+        return redirect()->back();
+    }
+-------------------> 44.00 min--------------
+***** Keu color choose korlei form ar code ta run korbe 
+So, use a condition....
+
+if(isset($request->color) && $request->color[0] != null){
+            
+        }
+
+-------->>>>
+
+  // $product->save();
+
+        // Add Color
+        // dd($request->color);
+        // $color = new Color();
+
+        if(isset($request->color) && $request->color[0] != null){
+            foreach($request->color as $color_name){
+                $color = new Color();
+    
+                $color->product_id = $product->id;
+                // $color->color_name = $request->color;
+                $color->color_name = $color_name;
+    
+                $color->save();
+            }
+        }
+
+
+        // $color->product_id = $product->id;
+        // $color->color_name = $request->color;
+
+        // Add Size 
+        if(isset($request->size) && $request->size[0] != null){
+            foreach($request->size as $size_name){
+                $size = new Size();
+    
+                $size->product_id = $product->id;
+                // $size->size_name = $request->size;
+                $size->size_name = $size_name;
+    
+                $size->save();
+            }
+        }
+        
+        return redirect()->back();
+    }
+--------------------------condition ok------------------
+
+ // $product->save();
+uncomment >>>  ok
+ $product->save();
+--------------->>>Check phpmyadmin/database >>> products and colors table >>>>ok
+
+50.00min>>>>>>>>>>>
+ $imageName = rand().'-galleryimage-'. '.' .$request->image->extension();
+        $request->image->move('backend/images/galleryImage', $imageName);
+
+$imageName = rand() . '-product-' . '.' . $request->image->extension();
+            $request->image->move('backend/images/product', $imageName);
+
+
+Gallery Image>>>>
+
+//Gallery Image
+            if(isset($request->galleryImage)){
+                foreach($request->galleryImage as $image){
+                    $galleryImage = new GalleryImage();
+
+                    $galleryImage->product_id =$product->id;
+
+                    $imageName = rand().'-galleryimage-'.'.'.$image->extension();
+                    $image->move('backend/images/galleryImage',$imageName);
+
+                    $galleryImage->image =$imageName;
+
+                    $galleryImage->save();
+
+                }
+            }
+        }
+        
+        return redirect()->back();
+=================================================ok
+productcontroller>>>>
+class ProductController extends Controller
+{ 
+    public function productCreate (){
+        $categories = Category::get();
+        $subCategories = SubCategory::get();
+        return view ('backend.product.create', compact ('categories','subCategories'));
+    }
+
+    public function productStore (Request $request){
+        $product = new Product();
+
+        // for image
+        
+        if (isset($request->image)){
+            $imageName = rand().'-product-'.'.'.$request->image->extension();
+            $request->image->move('backend/images/product',$imageName);
+
+            $product->image =$imageName;
+        }
+
+        $product->name = $request->name;
+        $product->slug = Str::slug ($request->name);
+        $product->cat_id = $request->cat_id;
+        $product->sub_cat_id = $request->sub_cat_id;
+        $product->sku_code = $request->sku_code;
+        $product->buying_price = $request->buying_price;
+        $product->regular_price = $request->regular_price;
+        $product->discount_price = $request->discount_price;
+        $product->qty = $request->qty;
+        $product->description = $request->description;
+        $product->policy = $request->policy;
+        $product->product_type = $request->product_type;
+
+        $product->save();
+
+        if(isset($request->color) && $request->color[0] != null){
+            foreach($request->color as $color_name){
+                $color = new Color();
+    
+                $color->product_id = $product->id;
+                // $color->color_name = $request->color;
+                $color->color_name = $color_name;
+
+                $color->save();
+            }
+        }
+
+        // $color->product_id = $product->id;
+        // $color->color_name = $request->color;
+
+        // Add Size 
+        if(isset($request->size) && $request->size[0] != null){
+            foreach($request->size as $size_name){
+                $size = new Size();
+    
+                $size->product_id = $product->id;
+                // $size->size_name = $request->size;
+                $size->size_name = $size_name;
+    
+                $size->save();
+            }
+
+            //Gallery Image
+            if(isset($request->galleryImage)){
+                foreach($request->galleryImage as $image){
+                    $galleryImage = new GalleryImage();
+
+                    $galleryImage->product_id =$product->id;
+
+                    $imageName = rand().'-galleryimage-'.'.'.$image->extension();
+                    $image->move('backend/images/galleryImage',$imageName);
+
+                    $galleryImage->image =$imageName;
+
+                    $galleryImage->save();
+
+                }
+            }
+        }
+        
+        return redirect()->back();
+    }
+==========================================
+Product Data Table >>> backend >>>product>>>create.blade.php
+@extends('backend.master')
+
+@section('content')
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Create Product</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">Create Product</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Add New Product</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form action="{{url('/admin/product/store')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="name">Product Name*</label>
+                                        <input type="text" class="form-control" name="name" id="name"
+                                            placeholder="Enter Product Name*" required>
+                                    </div>
+
+                                    {{-- Product Code --}}
+                                    <div class="form-group">
+                                        <label for="name">Product Code</label>
+                                        <input type="text" class="form-control" name="sku_code" id="name"
+                                            placeholder="Enter Product Code">
+                                    </div>
+
+                                    {{-- copy from subcat/create for category --}}
+                                    <div class="form-group">
+                                        <label for="name">Select Category Name*</label>
+                                        {{-- <input type="text" class="form-control" name="name" id="name" placeholder="Enter Category Name*" required> --}}
+                                        <select name="cat_id" class="form-control">
+                                            <option selected disabled>Select Category</option>
+                                            @foreach ($categories as $category)
+                                                {{-- <option value="">Category1</option> --}}
+                                                <option value="{{ $category->id }}">{{ $category->name }} </option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+
+                                    {{-- for subcategory --}}
+                                    <div class="form-group">
+                                        <label for="name">Select Sub-Category Name</label>
+                                        {{-- <input type="text" class="form-control" name="name" id="name" placeholder="Enter Category Name*" required> --}}
+                                        <select name="sub_cat_id" class="form-control">
+                                            <option selected disabled>Select Sub-Category</option>
+                                            @foreach ($subCategories as $subcategory)
+                                                {{-- <option value="">Category1</option> --}}
+                                                <option value="{{ $subcategory->id }}">{{ $subcategory->name }} </option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
+                                    {{-- Product Color --}}
+                                    <div class="form-group" id="color_fields">
+                                        <label for="name">Product Color (Optional)</label>
+                                        <input type="text" class="form-control" name="color[]" id="color" placeholder="Enter Product Color">
+                                    </div>
+                                    <button type="button" class="btn btn-primary" id="add_color">Add More</button>
+
+                                    {{-- Product Size --}}
+                                    <div class="form-group" id="size_fields">
+                                        <label for="name">Product Size (Optional)</label>
+                                        <input type="text" class="form-control" name="size[]" id="size" placeholder="Enter Product Size">
+                                    </div>
+                                    <button type="button" class="btn btn-primary" id="add_size">Add More</button>
+
+                                    {{-- Product Quantity --}}
+                                    <div class="form-group">
+                                        <label for="name">Product Quantity*</label>
+                                        <input type="number" class="form-control" name="qty" id="name"
+                                            placeholder="Enter Product Quantity" required>
+                                    </div>
+
+                                    {{-- Product Buying Price --}}
+                                    <div class="form-group">
+                                        <label for="name">Product Buying Price*</label>
+                                        <input type="number" class="form-control" name="buying_price" id="name"
+                                            placeholder="Enter Product Buying Price" required>
+                                    </div>
+
+                                    {{-- Product Regular Price --}}
+                                    <div class="form-group">
+                                        <label for="name">Product Regular Price*</label>
+                                        <input type="number" class="form-control" name="regular_price" id="name"
+                                            placeholder="Enter Product Regular Price" required>
+                                    </div>
+
+                                    {{-- Product Discount Price --}}
+                                    <div class="form-group">
+                                        <label for="name">Product Discount Price</label>
+                                        <input type="number" class="form-control" name="discount_price" id="name"
+                                            placeholder="Enter Product Discount Price" required>
+                                    </div>
+
+                                    {{-- Product Description --}}
+                                    <div class="form-group">
+                                        <label for="name">Product Description*</label>
+                                        {{-- <input type="number" class="form-control" name="discount_price" id="name" placeholder="Enter Product Discount Price" required> --}}
+                                        <textarea id="summernote" name="description" class="form-control" required></textarea>
+                                    </div>
+
+                                    {{-- Product Policy --}}
+                                    <div class="form-group">
+                                        <label for="name">Product Policy*</label>
+                                        {{-- <input type="number" class="form-control" name="discount_price" id="name" placeholder="Enter Product Discount Price" required> --}}
+                                        <textarea id="summernote2" name="policy" class="form-control" required></textarea>
+                                    </div>
+
+                                    {{-- copy from category for product_type --}}
+                                    <div class="form-group">
+                                        <label for="name">Select Product Type*</label>
+                                        {{-- <input type="text" class="form-control" name="name" id="name" placeholder="Enter Category Name*" required> --}}
+                                        <select name="product_type" class="form-control">
+                                            <option selected disabled>Select Type*</option>
+                                            {{-- <option value="">Category1</option> --}}
+                                            <option value="hot">Hot Products</option>
+                                            <option value="new">New Products</option>
+                                            <option value="regular">Regular Products</option>
+                                            <option value="discount">Discount Products</option>
+                                        </select>
+                                    </div>
+                                    {{-- Product Image --}}
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">Product Image*</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="image"
+                                                    id="image" accept="image/*" required>
+                                                <label class="custom-file-label" for="image">Choose file</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Upload</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                      {{-- For Multiple Product Image --}}
+                                      <div class="form-group">
+                                        <label for="exampleInputFile">Product Gallery Image*</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" name="galleryImage[]" multiple
+                                                    id="galleryImage" accept="image/*" required>
+                                                <label class="custom-file-label" for="image">Choose file</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">Upload</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+@endsection
+
+
+@push('script')
+    <!-- Page specific script -->
+    <script>
+        $(function() {
+            //   bsCustomFileInput.init();
+            // input file ar id >>>image
+            image.init();
+        });
+    </script>
+
+    <!-- Page specific script summernote -->
+    <script>
+        $(function() {
+            // Summernote
+            $('#summernote').summernote()
+
+            // CodeMirror
+            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                mode: "htmlmixed",
+                theme: "monokai"
+            });
+        })
+    </script>
+
+    <!-- Page specific script summernote -->
+    <script>
+        $(function() {
+            // Summernote
+            $('#summernote2').summernote()
+
+            // CodeMirror
+            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                mode: "htmlmixed",
+                theme: "monokai"
+            });
+        })
+    </script>
+
+    {{-- Add Color -> use jquery/js--}}
+    <script>
+        $(document).ready(function(){
+            $("#add_color").click(function(){
+                $("#color_fields").append('<input type="text" class="form-control" name="color[]" id="color" placeholder="Enter Product Color">')
+            })
+        })
+    </script>
+
+    {{-- Add Size -> use jquery/js--}}
+    <script>
+        $(document).ready(function(){
+            $("#add_size").click(function(){
+                $("#size_fields").append('<input type="text" class="form-control" name="size[]" id="size" placeholder="Enter Product Size">')
+            })
+        })
+    </script>
+
+@endpush
+
+
+
+
+
+
+

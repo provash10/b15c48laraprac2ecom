@@ -36,7 +36,6 @@ class CategoryController extends Controller
 
         // DB image Upload
         $category->image = $imageName;
-
     }
 
     $category->save();

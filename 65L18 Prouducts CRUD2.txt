@@ -1,0 +1,60 @@
+Class-65 (Laravel-18)
+=======================
+Note:
+1.
+
+
+------------------------
+Route::post('/admin/product/store',[ProductController::class, 'productStore']);
+*****Form Theke Data asbe so (Request $request)
+*****Data Insert Hobe PhpmyAdmin >>> products a ..
+*****Products Model ar akti Object Create korte hobe.
+
+use to copy paste from category controller for image.
+        if (isset($request->image)){
+            $imageName = rand().'-category-'.'.'.$request->image->extension();
+            $request->image->move('backend/images/category',$imageName);
+            $category->image =$imageName;
+        }
+
+>>>>>>>>>>
+class ProductController extends Controller
+{
+    public function productCreate (){
+        $categories = Category::get();
+        $subCategories = SubCategory::get();
+        return view ('backend.product.create', compact ('categories','subCategories'));
+    }
+
+    public function productStore (Request $request){
+        $product = new Product();
+
+        // for image
+        
+        if (isset($request->image)){
+            $imageName = rand().'-product-'.'.'.$request->image->extension();
+            $request->image->move('backend/images/product',$imageName);
+            $product->image =$imageName;
+        }
+
+        $product->name = $request->name;
+        $product->slug = Str::slug ($request->name);
+        $product->cat_id = $request->cat_id;
+        $product->sub_cat_id = $request->sub_cat_id;
+        $product->sku_code = $request->sku_code;
+        $product->buying_price = $request->buying_price;
+        $product->regular_price = $request->regular_price;
+        $product->discount_price = $request->discount_price;
+        $product->qty = $request->qty;
+        $product->description = $request->description;
+        $product->policy = $request->policy;
+        $product->product_type = $request->product_type;
+
+        $product->save();
+        return redirect()->back();
+    }
+}
+ check phpmyadmin >>> product table>>>> insert data ok
+-------------------------------------------------------------
+
+ok >>> 

@@ -1,3 +1,5 @@
+*****Every Part like Catewgory,SubCategory,Product Have Controller.
+
 1. Install All Setup
 2. Mastering Frontpage
 3. Auth Install and Design
@@ -5,7 +7,13 @@
 5. Auth Mastering ->All Backend
 6. Auth Backend - Data Table
 7. Create Route for new option like Auth-Categories
+8. Auth CRUD
+9. Category CRUD
+10. SubCategory CRUD
+11. Product CRUD
+12. Model - Product, Color, Size, GalleryImage, Review 
+13. SubCategory CRUD Edit & Delete
 
-===============
+===========================================================
   
    

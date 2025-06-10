@@ -67,10 +67,10 @@
                                                 <td>{{$product->discount_price}}</td>
                                                 <td>{{$product->qty}}</td>
                                                 <td>
-                                                    <a href="#"
+                                                    <a href="{{url('/admin/product/edit/'.$product->id)}}"
                                                         class="btn btn-primary">Edit</a>
                                                     {{-- <a href="{{url('/admin/category/delete/{id}')}}" class="btn btn-danger">Delete</a> --}}
-                                                    <a href="#"
+                                                    <a href="{{url('/admin/product/delete/'.$product->id)}}"
                                                         onclick="return confirm('Are You Sure!!!')"
                                                         class="btn btn-danger">Delete</a>
                                                 </td>

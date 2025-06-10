@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Color;
 use App\Models\GalleryImage;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\Size;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
@@ -102,5 +103,58 @@ class ProductController extends Controller
 
         return redirect()->back();
         // return redirect('backend.product.list');
+    }
+
+    public function productDelete($id){
+        $product = Product::find($id);
+
+        $colors = Color::where('product_id', $product->id)->get();
+        $sizes = Size::where('product_id', $product->id)->get();
+        $galleryImages = GalleryImage::where('product_id', $product->id)->get();
+        // $reviews = Review::where('product_id',$product->id)->get();
+       
+        // dd($product);
+        // dd($color);
+
+         // public folder image Delete
+    if($product->image && file_exists('backend/images/product/'.$product->image)){
+        unlink('backend/images/product/'.$product->image);
+    }
+
+    $product->delete();
+
+    // Multple Colors Delete
+    if($colors->isNotEmpty()){
+        foreach($colors as $color){
+            $color->delete();
+        }
+    }
+    // Multple Sizes Delete
+    if($sizes->isNotEmpty()){
+        foreach($sizes as $size){
+            $size->delete();
+        }
+    }
+
+    // Multple galleryImages Delete
+    if($galleryImages->isNotEmpty()){
+        foreach($galleryImages as $image){
+
+            if($image->image && file_exists('backend/images/galleryImage/'.$image->image)){
+        unlink('backend/images/galleryImage/'.$image->image);
+    }
+            $image->delete();
+        }
+    }
+
+    // Multple reviews Delete
+    // if($reviews->isNotEmpty()){
+    //     foreach($reviews as $review){
+    //         $review->delete();
+    //     }
+    // }
+
+
+    return redirect()->back();
     }
 }

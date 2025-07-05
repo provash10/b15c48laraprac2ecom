@@ -111,7 +111,7 @@ class ProductController extends Controller
         $colors = Color::where('product_id', $product->id)->get();
         $sizes = Size::where('product_id', $product->id)->get();
         $galleryImages = GalleryImage::where('product_id', $product->id)->get();
-        // $reviews = Review::where('product_id',$product->id)->get();
+        $reviews = Review::where('product_id',$product->id)->get();
        
         // dd($product);
         // dd($color);
@@ -148,13 +148,18 @@ class ProductController extends Controller
     }
 
     // Multple reviews Delete
-    // if($reviews->isNotEmpty()){
-    //     foreach($reviews as $review){
-    //         $review->delete();
-    //     }
-    // }
+    if($reviews->isNotEmpty()){
+        foreach($reviews as $review){
+            $review->delete();
+        }
+    }
 
 
     return redirect()->back();
+    }
+
+    Public function productEdit($id){
+        $product = Product::where('id',$id)->with('color', 'size', 'galleryImage', 'review')->first();
+        // dd($product);
     }
 }

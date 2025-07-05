@@ -28,11 +28,12 @@ class Product extends Model
       }
 
       public function galleryImage(){
-        return $this->hasMany(GalleryImage::class, 'cat_id', 'id');
+        // return $this->hasMany(GalleryImage::class, 'cat_id', 'id'); ***check db galleryImage id
+        return $this->hasMany(GalleryImage::class, 'product_id', 'id');
       }
 
        public function review(){
-        return $this->hasMany(Review::class, 'cat_id', 'id');
+        return $this->hasMany(Review::class, 'product_id', 'id');
       }
 
 

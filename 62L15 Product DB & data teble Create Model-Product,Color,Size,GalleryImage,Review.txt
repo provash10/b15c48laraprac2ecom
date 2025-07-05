@@ -123,6 +123,8 @@ public function up(): void
 Command >>> php artisan migrate >>>>>ok
 Check DB Color Option >>> ok
 
+40.00 min >>>
+
 6. For Reviews new table means new model 
 php artisan make:model Review -m
 ****Model Create : Review.php

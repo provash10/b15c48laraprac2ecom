@@ -105,6 +105,13 @@ ProductController.php>>>
             }
         }
 
+         // Multple reviews Delete
+        if($reviews->isNotEmpty()){
+        foreach($reviews as $review){
+            $review->delete();
+        }
+    }
+
 
         return redirect()->back();
     }

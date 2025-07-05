@@ -94,6 +94,7 @@ public function size (){
 
 -------------------------------------
 Eloquent Relationship of Product (Product & GalleryImage)
+***** foreign key and local key--->>>  cat_id hobe na alt->> product_id and id hobe
 
 Models >>>GalleryImage.php
 public function product (){
@@ -101,25 +102,27 @@ public function product (){
     }
 
 Models >>>Product.php
-
+***** foreign key and local key--->>>  cat_id hobe na alt->> product_id and id hobe
 public function galleryImage (){
         return $this->hasMany(GalleryImage::class, 'product_id','id');
     }
 -----------------------------
 45.00 min
 Eloquent Relationship of Product (Product & Review)
+***** foreign key and local key--->>>  cat_id hobe na alt->> product_id and id hobe
 
 Models >>>Review.php
     public function product (){
         return $this->belongsTo(Product::class, 'product_id','id');
 
 Models >>>Product.php
+***** foreign key and local key--->>>  cat_id hobe na alt->> product_id and id hobe
 public function review (){
         return $this->hasMany(Review::class, 'product_id','id');
     }
 ------------------------------------------------
 49.00 min
-****prosuct table a product ar sathe Category and SubCategory Name show korate hobe.
+****product table a product ar sathe Category and SubCategory Name show korate hobe.
 
 **** Product Model e Category and SubCategory R jonno kono Relation ase kina.
 ****For Category >>>  public function category(){
@@ -231,6 +234,10 @@ Again Solution >>>
 >>>>>>>>>>>>check>>>
 >> http://127.0.0.1:8000/admin/product/list >>> done
 ---------------------------------------------------------
-
+$table->unsignedBigInteger('product_id');
+            $table->string('cutomer_name');
+            $table->string('message');
+            $table->integer('rating');
+            $table->string('image');
 
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('product_id');
-            $table->string('cutomer_name');
+            $table->string('customer_name');
             $table->string('message');
             $table->integer('rating');
             $table->string('image');

@@ -123,20 +123,20 @@ class ProductController extends Controller
 
     $product->delete();
 
-    // Multple Colors Delete
+    // Multiple Colors Delete
     if($colors->isNotEmpty()){
         foreach($colors as $color){
             $color->delete();
         }
     }
-    // Multple Sizes Delete
+    // Multiple Sizes Delete
     if($sizes->isNotEmpty()){
         foreach($sizes as $size){
             $size->delete();
         }
     }
 
-    // Multple galleryImages Delete
+    // Multiple galleryImages Delete
     if($galleryImages->isNotEmpty()){
         foreach($galleryImages as $image){
 
@@ -147,7 +147,7 @@ class ProductController extends Controller
         }
     }
 
-    // Multple reviews Delete
+    // Multiple reviews Delete
     if($reviews->isNotEmpty()){
         foreach($reviews as $review){
             $review->delete();
@@ -159,7 +159,10 @@ class ProductController extends Controller
     }
 
     Public function productEdit($id){
-        $product = Product::where('id',$id)->with('color', 'size', 'galleryImage', 'review')->first();
+        $product = Product::where('id',$id)->with('color', 'size', 'galleryImage')->first();
         // dd($product);
+        $categories = Category::get();
+        $subCategories = SubCategory::get();
+        return view('backend.product.edit', compact('product', 'categories', 'subCategories'));
     }
 }

@@ -4,6 +4,10 @@ Product Data Table CRUD (Delete & Edit)
 ------------------------------------------
 Note:
 1. Product CRUD - Delete
+2. $colors = Color::where('product_id', $product->id)->get();
+        $sizes = Size::where('product_id', $product->id)->get();
+        $galleryImages = GalleryImage::where('product_id', $product->id)->get();
+        $reviews = Review::where('product_id',$product->id)->get();
 
 -------------------------
 *****Product List  theke kono product delete korle
@@ -144,7 +148,7 @@ All Data get ar jonno
         $subCategories = SubCategory::get();
         return view('backend.product.edit', compact('product','categories','subCategories'));
     }
-
+35.00 min
 ----------create edit blade file >>>>backend/product/edit.blade.php
 >>> backend/product/create.blade.php copy data and paste >>>backend/product/edit.blade.php
 and edit...........

@@ -20,11 +20,11 @@ class Product extends Model
     }
 
     public function color(){
-        return $this->hasMany(Color::class, 'cat_id', 'id');
+        return $this->hasMany(Color::class, 'product_id', 'id');
       }
 
       public function size(){
-        return $this->hasMany(Size::class, 'cat_id', 'id');
+        return $this->hasMany(Size::class, 'product_id', 'id');
       }
 
       public function galleryImage(){

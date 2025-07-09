@@ -192,6 +192,7 @@ value="{{$product->discount_price}}"
 
 -------------------------=======================================================
 //////////////////////////////////////
+edit korar somoy ager data showing and edit ..........
 product table >>>> edit.blade.php
 @extends('backend.master')
 

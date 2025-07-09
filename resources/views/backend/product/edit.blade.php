@@ -34,7 +34,7 @@
 
                             <!-- form start -->
                             {{-- <form action="{{url('/admin/product/update/{id}')}}" method="post" enctype="multipart/form-data"> --}}
-                            <form action="{{ url('/admin/product/update/'.$product->id) }}" method="post"
+                            <form action="{{url('/admin/product/update/'.$product->id)}}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
@@ -175,7 +175,7 @@
                                         </div>
                                          {{-- <img src="{{asset('backend/images/galleryImage/')}}" height="100" width="100"> --}}
                                             @foreach ($product->galleryImage as $image)
-<img src="{{asset('backend/images/galleyimage/'.$image->image)}}" height="100" width="100">
+<img src="{{asset('backend/images/galleryimage/'.$image->image)}}" height="100" width="100">
 @endforeach
 
                                     </div>

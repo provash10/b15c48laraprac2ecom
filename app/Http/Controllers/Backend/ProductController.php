@@ -177,56 +177,61 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
 
+        // For Single Image
         if (isset($request->image)) {
-            if ($product->image && file_exists('backend/images/product/' . $product->image)) {
-                unlink('backend/images/product/' . $product->image);
+            // delete image & link
+            if ($product->image && file_exists('backend/images/product/'.$product->image)) {
+                unlink('backend/images/product/'.$product->image);
             }
 
-            $imageName = rand() . '-product-' . '.' . $request->image->extension();
+            // upload new image
+            $imageName = rand().'-product-'.'.'.$request->image->extension();
             $request->image->move('backend/images/product', $imageName);
 
             $product->image = $imageName;
         }
 
-        //GalleryImage
+        // For GalleryImage / multiple image
 
         if (isset($request->galleryImage)) {
 
             $images = GalleryImage::where('product_id', $product->id)->get();
 
-            if($images->isNotEmpty()){
-                 foreach ($images as $singleImage) {
-                if ($product->image && file_exists('backend/images/galleryImage/' . $singleImage->image)) {
-                    unlink('backend/images/galleryImage/' . $singleImage->image);
+            if ($images->isNotEmpty()) {
+
+                // Delete GalleryImage / multiple image
+                foreach ($images as $singleImage) {
+                    if ($singleImage->image && file_exists('backend/images/galleryImage/' . $singleImage->image)) {
+                        unlink('backend/images/galleryImage/' . $singleImage->image);
+                    }
+                    $singleImage->delete();
                 }
-                $singleImage->delete();
+
+                // Upload new GalleryImage / multiple image
+                foreach ($request->galleryImage as $image) {
+                    $galleryImage = new GalleryImage();
+
+                    $galleryImage->product_id = $product->id;
+
+                    $imageName = rand() . '-galleryimage-' . '.' . $image->extension();
+                    $image->move('backend/images/galleryImage', $imageName);
+
+                    $galleryImage->image = $imageName;
+
+                    $galleryImage->save();
+                }
             }
-
-            foreach ($request->galleryImage as $image) {
-                $galleryImage = new GalleryImage();
-
-                $galleryImage->product_id = $product->id;
-
-                $imageName = rand() . '-galleryimage-' . '.' . $image->extension();
-                $image->move('backend/images/galleryImage', $imageName);
-
-                $galleryImage->image = $imageName;
-
-                $galleryImage->save();
-            }
-            }
-           
         }
 
         // Add Color
         if (isset($request->color) && $request->color[0] != null) {
             $colors = Color::where('product_id', $product->id)->get();
             // Multiple Colors Delete
-        if ($colors->isNotEmpty()) {
-            foreach ($colors as $color) {
-                $color->delete();
+            if($colors->isNotEmpty()) {
+                foreach ($colors as $color){
+                    $color->delete();
+                }
             }
-        }
             //add color
             // dd($request->color);
             foreach ($request->color as $color_name) {
@@ -243,12 +248,12 @@ class ProductController extends Controller
         if (isset($request->size) && $request->size[0] != null) {
             $sizes = Size::where('product_id', $product->id)->get();
 
-             // Multiple Sizes Delete
-        if ($sizes->isNotEmpty()) {
-            foreach ($sizes as $size) {
-                $size->delete();
+            // Multiple Sizes Delete
+            if ($sizes->isNotEmpty()) {
+                foreach ($sizes as $size) {
+                    $size->delete();
+                }
             }
-        }
             //add size
             // dd($request->size);
             foreach ($request->size as $size_name) {

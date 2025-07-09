@@ -34,18 +34,19 @@
 
                             <!-- form start -->
                             {{-- <form action="{{url('/admin/product/update/{id}')}}" method="post" enctype="multipart/form-data"> --}}
-                                 <form action="{{url('/admin/product/update/'.$product->id)}}" method="post" enctype="multipart/form-data">
+                            <form action="{{ url('/admin/product/update/'.$product->id) }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="name">Product Name*</label>
-                                        <input type="name" class="form-control" name="name" id="name"
+                                        <input type="name" class="form-control" value="{{$product->name}}" name="name" id="name"
                                             placeholder="Enter Product Name" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="name">Product Code</label>
-                                        <input type="name" class="form-control" name="sku_code" id="sku_code"
+                                        <input type="name" class="form-control" value="{{$product->sku_code}}" name="sku_code" id="sku_code"
                                             placeholder="Enter Product Code">
                                     </div>
 
@@ -54,7 +55,9 @@
                                         <select name="cat_id" class="form-control">
                                             <option selected disabled>Select Category</option>
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option
+                                                    value="{{ $category->id }}"@if ($category->id == $product->cat_id) selected @endif>
+                                                    {{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -64,7 +67,9 @@
                                         <select name="sub_cat_id" class="form-control">
                                             <option selected disabled>Select Category</option>
                                             @foreach ($subCategories as $subcategory)
-                                                <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
+                                                <option value="{{ $subcategory->id }}"
+                                                    @if ($subcategory->id == $product->sub_cat_id) selected @endif>
+                                                    {{ $subcategory->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -72,89 +77,107 @@
                                     {{-- Multiple Color --}}
                                     <div class="form-group" id="color_fields">
                                         <label for="name">Product Color(Optional)</label>
-                                        <input type="text" class="form-control" name="color[]" id="color" placeholder="Enter Product Color">    
+                                        {{-- <input type="text" class="form-control" name="color[]" id="color" placeholder="Enter Product Color">     --}}
+                                        @foreach ($product->color as $singleColor)
+                                            <input type="text" class="form-control" name="color[]" value="{{ $singleColor->color_name }}" id="color" placeholder="Enter Product Color">
+                                        @endforeach
                                     </div>
-                                        <button type="button" class="btn btn-primary" id="add_color">Add More</button>
+                                    <button type="button" class="btn btn-primary" id="add_color">Add More</button>
 
-                                        {{-- Multiple Size --}}
+                                    {{-- Multiple Size --}}
                                     <div class="form-group" id="size_fields">
                                         <label for="name">Product Size(Optional)</label>
-                                        <input type="text" class="form-control" name="size[]" id="size" placeholder="Enter Product Size">    
+                                        {{-- <input type="text" class="form-control" name="size[]" id="size"
+                                            placeholder="Enter Product Size"> --}}
+                                            @foreach ($product->size as $singleSize )
+ <input type="text" class="form-control" name="size[]" value="{{$singleSize->size_name}}" id="size" placeholder="Enter Product Size">
+ @endforeach
                                     </div>
-                                        <button type="button" class="btn btn-primary" id="add_size">Add More</button>
+                                    <button type="button" class="btn btn-primary" id="add_size">Add More</button>
 
                                     <div class="form-group">
                                         <label for="name">Product Quantity</label>
-                                        <input type="number" class="form-control" name="qty" id="qty"
+                                        <input type="number" class="form-control" value="{{$product->qty}}" name="qty" id="qty"
                                             placeholder="Enter Product Quantity" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="name">Product Buying Price</label>
-                                        <input type="number" class="form-control" name="buying_price" id="buying_price"
+                                        <input type="number" class="form-control" value="{{$product->buying_price}}" name="buying_price" id="buying_price"
                                             placeholder="Enter Buying Price" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="name">Product Regular Price</label>
-                                        <input type="number" class="form-control" name="regular_price" id="regular_price"
+                                        <input type="number" class="form-control" value="{{$product->regular_price}}" name="regular_price" id="regular_price"
                                             placeholder="Enter Regular Price" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="name">Product Discount Price</label>
-                                        <input type="number" class="form-control" name="discount_price" id="discount_price"
+                                        <input type="number" class="form-control" value="{{$product->discount_price}}" name="discount_price" id="discount_price"
                                             placeholder="Enter Discount Price">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="name">Product Discription*</label>
-                                        <textarea id="summernote1" name="description" class="form-control" required> </textarea>
+                                        <textarea id="summernote1" name="description" class="form-control" required>{{$product->description}}</textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="name">Product Policy</label>
-                                        <textarea id="summernote2" name="policy" class="form-control" required> </textarea>
+                                        <textarea id="summernote2" name="policy" class="form-control" required> {{$product->policy}}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Select Product Type*</label>
                                         <select name="product_type" class="form-control">
                                             <option selected disabled>Select Type</option>
-                                            <option value="hot">Hot Product</option>
-                                            <option value="new">New Arrival</option>
-                                            <option value="regular">Regular Products</option>
-                                            <option value="discount">Discount Products</option>
+                                            <option value="hot" @if ($product->product_type == 'hot') selected @endif>Hot
+                                                Product</option>
+                                            <option value="new" @if ($product->product_type == 'new') selected @endif>New
+                                                Arrival</option>
+                                            <option value="regular" @if ($product->product_type == 'regular') selected @endif>
+                                                Regular Products</option>
+                                            <option value="discount" @if ($product->product_type == 'discount') selected @endif>
+                                                Discount Products</option>
                                         </select>
                                     </div>
 
-                                    {{-- Single Image --}}
+                                    {{-- Single Image /Product Image--}}
                                     <div class="form-group">
                                         <label for="image">Product Image*</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <input type="file" class="custom-file-input" name="image"
-                                                    id="image" accept="image/*" required>
+                                                    id="image" accept="image/*">
                                                 <label class="custom-file-label" for="image">Choose file</label>
                                             </div>
                                             <div class="input-group-append">
                                                 <span class="input-group-text">Upload</span>
                                             </div>
                                         </div>
+                                        <img src="{{asset('backend/images/product/'.$product->image)}}" alt="single image" height="100" width="100">
                                     </div>
 
-                                    {{-- Gallery Image --}}
+                                    {{-- Gallery Image/ Multiple Image --}}
                                     <div class="form-group">
                                         <label for="image">Gallery Image*</label>
                                         <div class="input-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" name="galleryImage[]" multiple
-                                                    id="galleryImage" accept="image/*" required>
+                                                <input type="file" class="custom-file-input" name="galleryImage[]"
+                                                    multiple id="galleryImage" accept="image/*">
                                                 <label class="custom-file-label" for="image">Choose file</label>
                                             </div>
+                                            
                                             <div class="input-group-append">
                                                 <span class="input-group-text">Upload</span>
                                             </div>
                                         </div>
+                                         {{-- <img src="{{asset('backend/images/galleryImage/')}}" height="100" width="100"> --}}
+                                            @foreach ($product->galleryImage as $image)
+<img src="{{asset('backend/images/galleyimage/'.$image->image)}}" height="100" width="100">
+@endforeach
+
                                     </div>
 
                                     {{-- <div class="form-check">
@@ -189,47 +212,50 @@
     </script>
 
     <!-- Page specific script -->
-<script>
-  $(function () {
-    // Summernote
-    $('#summernote1').summernote()
+    <script>
+        $(function() {
+            // Summernote
+            $('#summernote1').summernote()
 
-    // CodeMirror
-    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-      mode: "htmlmixed",
-      theme: "monokai"
-    });
-  })
-</script>
-
-<script>
-  $(function () {
-    // Summernote
-    $('#summernote2').summernote()
-
-    // CodeMirror
-    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-      mode: "htmlmixed",
-      theme: "monokai"
-    });
-  })
-</script>
-
-{{-- add color By jQuery --}}
-<script>
-    $(document).ready(function(){
-        $("#add_color").click(function(){
-            $("#color_fields").append('<input type="text" class="form-control" name="color[]" id="color" placeholder="Enter Product Color">')
+            // CodeMirror
+            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                mode: "htmlmixed",
+                theme: "monokai"
+            });
         })
-    })
-</script>
-{{-- add size By jQuery --}}
-<script>
-    $(document).ready(function(){
-        $("#add_size").click(function(){
-            $("#size_fields").append('<input type="text" class="form-control" name="size[]" id="size" placeholder="Enter Product Size">')
-        })
-    })
-</script>
+    </script>
 
+    <script>
+        $(function() {
+            // Summernote
+            $('#summernote2').summernote()
+
+            // CodeMirror
+            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                mode: "htmlmixed",
+                theme: "monokai"
+            });
+        })
+    </script>
+
+    {{-- add color By jQuery --}}
+    <script>
+        $(document).ready(function() {
+            $("#add_color").click(function() {
+                $("#color_fields").append(
+                    '<input type="text" class="form-control" name="color[]" id="color" placeholder="Enter Product Color">'
+                    )
+            })
+        })
+    </script>
+    {{-- add size By jQuery --}}
+    <script>
+        $(document).ready(function() {
+            $("#add_size").click(function() {
+                $("#size_fields").append(
+                    '<input type="text" class="form-control" name="size[]" id="size" placeholder="Enter Product Size">'
+                    )
+            })
+        })
+    </script>
 @endpush

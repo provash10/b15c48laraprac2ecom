@@ -59,5 +59,5 @@ Route::get('/admin/product/list',[ProductController::class, 'productList']);
 Route::get('/admin/product/create',[ProductController::class, 'productCreate']);
 Route::post('/admin/product/store',[ProductController::class, 'productStore']);
 Route::get('/admin/product/edit/{id}',[ProductController::class, 'productEdit']);
-Route::post('/admin/prodcut/update/{id}',[ProductController::class, 'productUpdate']);
+Route::post('/admin/product/update/{id}',[ProductController::class, 'productUpdate']);
 Route::get('/admin/product/delete/{id}',[ProductController::class, 'productDelete']);

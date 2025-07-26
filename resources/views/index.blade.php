@@ -95,7 +95,8 @@
 					@foreach ($hotProducts as $product)
 						<div class="product__item-outer">
 						<div class="product__item-image-outer">
-							<a href="{{url('/product-details')}}" class="product__item-image-inner">
+							{{-- <a href="{{url('/product-details')}}" class="product__item-image-inner"> --}}
+								<a href="{{url('/product-details/'.$product->id)}}" class="product__item-image-inner">
 								{{-- <img src="{{asset('/assets/images/product.png')}}" alt="Product Image" /> --}}
 								<img src="{{asset('/backend/images/product/'.$product->image)}}" alt="Product Image" />
 							</a>
@@ -112,7 +113,8 @@
 							</div>
 						</div>
 						<div class="product__item-info-outer">
-							<a href="{{url('/product-details')}}" class="product__item-name">
+							{{-- <a href="{{url('/product-details')}}" class="product__item-name"> --}}
+								<a href="{{url('/product-details/'.$product->id)}}" class="product__item-name">
 								{{-- Test Product --}}
 								{{$product->name}}
 							</a>

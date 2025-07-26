@@ -10,43 +10,60 @@
                                 <div class="col-lg-7 col-md-7">
                                     <div class="product-images-slider-outer">
                                         <div class="slider slider-content">
-                                            <div>
-                                                <img src="{{asset('/assets/images/product.png')}}" alt="slider images">
+                                            @foreach ($product->galleryImage as $image)
+                                                <div>
+                                                {{-- <img src="{{asset('/assets/images/product.png')}}" alt="slider images"> --}}
+                                                <img src="{{asset('backend/images/galleryImage/'.$image->image)}}" alt="slider images">
                                             </div>
+                                            @endforeach
                                         </div>
                                         <div class="slider slider-thumb">
-                                            <div>
-                                                <img src="{{asset('/assets/images/product.png')}}" alt="slider images">
+                                            @foreach ($product->galleryImage as $image)
+                                                <div>
+                                                <img src="{{asset('backend/images/galleryImage/'.$image->image)}}" alt="slider images">
                                             </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-5 col-md-5">
                                     <div class="product-details-content">
                                         <h3 class="product-name">
-                                            Test Product
+                                            {{-- Test Product --}}
+                                            {{$product->name}}
                                         </h3>
                                         <div class="product-price">
-                                            <span>300 Tk.</span>
+                                            {{-- <span>300 Tk.</span> --}}
+                                            <span>{{$product->discount_price}} Tk</span>
                                             <span class="" style="color: #f74b81;">
-                                                <del>400 Tk.</del>
+                                                {{-- <del>400 Tk.</del> --}}
+                                                <del>{{$product->regular_price}} Tk</del>
                                             </span>
                                         </div>
-                                        <div class="product-details-select-items-wrap">
-                                            <div class="product-details-select-item-outer">
-                                                <input type="radio" name="color" id="color" value="Red" class="category-item-radio">
-                                                <label for="color" class="category-item-label">
-                                                    Red
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="product-details-select-items-wrap">
-                                            <div class="product-details-select-item-outer">
-                                                <input type="radio" name="size" value="XXl" class="category-item-radio">
-                                                <label for="size" class="category-item-label">XXl</label>
-                                            </div>
-                                        </div>
+                                        
                                         <form action="" method="POST">
+                                            <div class="product-details-select-items-wrap">
+                                                @foreach ($product->color as $colorName)
+                                                    <div class="product-details-select-item-outer">
+                                                   <input type="radio" name="color" id="color" value="Red" class="category-item-radio">
+                                                    <label for="color" class="category-item-label">
+                                                     {{-- Red --}}
+                                                     {{$colorName->color_name}}
+                                                    </label>
+                                                </div>
+                                                @endforeach
+                                            </div>
+
+                                        <div class="product-details-select-items-wrap">
+                                            @foreach ($product->size as $sizeName)
+                                                <div class="product-details-select-item-outer">
+                                                <input type="radio" name="size" value="XXl" class="category-item-radio">
+                                                {{-- <label for="size" class="category-item-label">XXl</label> --}}
+                                                <label for="size" class="category-item-label">{{$sizeName->size_name}}</label>
+                                            </div>
+                                            @endforeach
+                                        </div>
+
                                             <div class="purchase-info-outer">
                                                 <div class="product-incremnt-decrement-outer" style="display: block">
                                                     <a title="Decrement" class="decrement-btn" style="margin-top: -10px;">
@@ -96,7 +113,10 @@
                                 </ul>
                                 <div class="tab-content" id="pills-tabContent">
                                     <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis minus, ut unde laudantium accusamus odio nam officia aperiam excepturi quis nesciunt eveniet eligendi, corrupti voluptatibus. Similique doloremque velit optio aliquam.
+                                        {{-- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis minus, ut unde laudantium accusamus odio nam officia aperiam excepturi quis nesciunt eveniet eligendi, corrupti voluptatibus. Similique doloremque velit optio aliquam. --}}
+                                        {{-- product description id="pills-tabContent --}}
+                                        {{-- {{$product->description}} --}}
+                                        {{!!$product->description!!}}
                                     </div>
                                     <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
                                         <div class="review-item-wrapper">
@@ -122,8 +142,11 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="pills-policy" role="tabpanel" aria-labelledby="pills-policy-tab">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis minus,
-                                        ut unde laudantium accusamus odio nam officia aperiam excepturi quis nesciunt eveniet eligendi
+                                        {{-- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis minus,
+                                        ut unde laudantium accusamus odio nam officia aperiam excepturi quis nesciunt eveniet eligendi --}}
+                                        {{-- Product Policy id="pills-policy" --}}
+                                        {{-- {{$product->policy}} --}}
+                                        {{!!$product->policy!!}}
                                     </div>
                                 </div>
                             </div>

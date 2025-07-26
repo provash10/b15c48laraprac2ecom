@@ -25,7 +25,8 @@ Route::get('/payment-policy',[FrontendController::class, 'paymentPolicy']);
 Route::get('/about-us',[FrontendController::class, 'aboutUs']);
 Route::get('/contact-us',[FrontendController::class, 'contactUs']);
 
-Route::get('/product-details',[FrontendController::class, 'productDetails']);
+// Route::get('/product-details',[FrontendController::class, 'productDetails']);
+Route::get('/product-details/{id}',[FrontendController::class, 'productDetails']);
 Route::get('/type-products',[FrontendController::class, 'typeProducts']);
 
 //Admin Login

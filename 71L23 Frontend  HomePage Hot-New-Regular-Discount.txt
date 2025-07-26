@@ -1,6 +1,8 @@
 Class-71 (Laravel-23)
 =============================
 Front Part (linkup)
+
+*****cause of recording work with New Arrival of frontpage*****
 Note:
 ***** Product list korar por webpage er front a dekhano..................
 1. frnotendcontroller

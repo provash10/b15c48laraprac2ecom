@@ -41,8 +41,14 @@ class FrontendController extends Controller
         return view('checkout');
     }
 
-    public function productDetails(){
-        return view('product-details');
+    public function productDetails($id){
+        // for single data
+        // $product = Product::find($id);
+
+        // for multiple data
+        $product = Product::with('color', 'size','galleryImage', 'review')->where('id', $id)->first();
+        // dd($product);
+        return view('product-details', compact('product'));
     }
 
     public function typeProducts(){

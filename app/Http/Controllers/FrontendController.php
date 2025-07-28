@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -9,12 +10,12 @@ class FrontendController extends Controller
 {
     public function index (){
         // $products = Product::get();
-        $hotProducts = Product::where('product_type', 'hot')->get();
+        $hotProducts = Product::where('product_type', 'hot')->orderBy('id', 'desc')->get();
         $newProducts = Product::where('product_type','new')->get();
         $regularProducts = Product::where('product_type','regular')->get();
         $discountProducts = Product::where('product_type','discount')->get();
-        
-        return view ('index', compact('hotProducts','newProducts','regularProducts','discountProducts'));
+        $categories = Category::orderBy('id', 'desc')->get();
+        return view ('index', compact('hotProducts','newProducts','regularProducts','discountProducts', 'categories'));
     }
 
     public function shop(){
@@ -41,14 +42,17 @@ class FrontendController extends Controller
         return view('checkout');
     }
 
-    public function productDetails($id){
+    public function productDetails($slug){
         // for single data
         // $product = Product::find($id);
 
         // for multiple data
-        $product = Product::with('color', 'size','galleryImage', 'review')->where('id', $id)->first();
+        // $product = Product::with('color', 'size','galleryImage', 'review')->where('id', $id)->first();
+        $product = Product::with('color', 'size','galleryImage', 'review')->where('slug', $slug)->first();
         // dd($product);
-        return view('product-details', compact('product'));
+        // $categories = Category::get();
+        $categories = Category::orderBy('id', 'desc')->get();
+        return view('product-details', compact('product', 'categories'));
     }
 
     public function typeProducts(){

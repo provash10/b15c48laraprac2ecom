@@ -3,7 +3,51 @@ Class-72 (Laravel-24)
 ========================
 Frontend Home Page>>> Single Product Details
 >>>http://127.0.0.1:8000/product-details
---------------------
+----------------------------------------------
+Note:
+*****je product e click koresi sei product ar details dekhate hobe******
+products ar details dekte hole id dore dekte hobe
+
+1.
+a. Route::get('/product-details/{id}',[FrontendController::class, 'productDetails'])->name('product.details');
+b. FrontendController
+public function productDetails($id){
+        $product = Product::find($id);
+
+        return view('product-details', compact('product'));
+    }
+
+c.index.blade.php-> theke every product ar individually url change/setup kore dite hobe
+hot products
+{{-- <a href="{{url('/product-details')}}" class="product__item-image-inner"> --}} 
+<a href="{{url('/product-details/'.$product->id)}}" class="product__item-image-inner">
+
+{{-- <a href="{{url('/product-details')}}" class="product__item-name"> --}}
+<a href="{{url('/product-details/'.$product->id)}}" class="product__item-name">
+
+new, regular, discount all product ar url dite hobe.........
+
+
+d. view--->product-details.blade.php >>>
+
+
+
+....
+18.00 min >>> color, size alada table theke alada vabe dekhate hobe
+
+22.00 Min >>> Multiple data
+
+
+44.00 Min review>>
+44.00 min
+******Products url a ***id na dia ***slug dite hobe
+
+********http://127.0.0.1:8000/product-details/14 url SEO friendly with slug
+**********index.blade.php >>>> use slug to id 
+******FrontendController a function o change korte hobe
+******index.blade.php ---->>>> .$product->id ----$product->slug 
+
+================================================
 Q. 1 >>> Previous - Next under Gallery Image
 
 web.php 
@@ -73,7 +117,7 @@ class="col-lg-5 col-md-5">
 18.00 min >>> color, size alada table theke alada vabe dekhate hobe
 
 Description, Review, Product Policy >>>
-Description >>> id="pills-description-tab"
+Description >>> id="pills-description-tab" *****niche ase
 
 <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
  {{-- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis minus, ut unde laudantium accusamus odio nam officia aperiam excepturi quis nesciunt eveniet eligendi, corrupti voluptatibus. Similique doloremque velit optio aliquam. --}}
@@ -92,7 +136,7 @@ Product Policy>>> id="pills-policy-tab"
                                 {{-- {{$product->policy}} --}}
                                 {!!$product->policy!!}  
                             </div>
->>>> Single Data Setup ok
+>>>> Single Data Setup ok***********************************************/////////////
 ***** without html tag use it{!!!!}
 ------------
 
@@ -284,6 +328,8 @@ insert review>> phpmyadmin
 
 ********http://127.0.0.1:8000/product-details/14 url SEO friendly with slug
 **********index.blade.php >>>> use slug to id 
+******function o change korte hobe
+******index.blade.php ---->>>> .$product->id ----$product->slug 
 
 http://127.0.0.1:8000/product-details/14 >>>>http://127.0.0.1:8000/product-details/slug
 Route::get('/product-details/{id}',[FrontendController::class, 'productDetails'])->name('product.details');
@@ -294,11 +340,57 @@ Route::get('/product-details/{id}',[FrontendController::class, 'productDetails']
 public function productDetails($slug){
 
     // $product = Product::find($id);
-    
+    // $product = Product::with('color', 'size','galleryImage', 'review')->where('id', $id)->first();
     $product = Product::with('color','size','galleryImage','review')->where('slug', $slug)->first();
     // dd($product);
     return view('product-details', compact('product'));
 }
+
+46.00 min >>> All hot, new, regular, discount page ar 2 position product-details/
+              >>> {{-- <a href="{{url('/product-details')}}" class="product__item-image-inner"> --}}
+             .$product->id -----> .$product->slug  kore dile 
+             product url product name onujayi hobe ....check any product url  id=slug   
+
+@foreach ($newProducts as $product)
+						<div class="product__item-outer">
+						<div class="product__item-image-outer">
+							{{-- <a href="{{url('/product-details')}}" class="product__item-image-inner"> --}}
+								<a href="{{url('product-details/'.$product->slug)}}" class="product__item-image-inner">
+								{{-- <img src="{{asset('/assets/images/product1.jpg')}}" alt="Product Image" /> --}}
+								<img src="{{asset('/backend/images/product/'.$product->image)}}" alt="Product Image" />
+							</a>
+							<div class="product__item-add-cart-btn-outer">
+								<a href="#" class="product__item-add-cart-btn-inner">
+									Add to Cart
+								</a>
+							</div>
+							<div class="product__type-badge-outer">
+								<span class="product__type-badge-inner">
+									{{-- New --}}
+									{{ucfirst($product->product_type)}}
+								</span>
+							</div>
+						</div>
+						<div class="product__item-info-outer">
+							{{-- <a href="{{url('/product-details')}}" class="product__item-name"> --}}
+							<a href="{{url('product-details/'.$product->slug)}}" class="product__item-name">
+								{{-- Test Product /product name--}}
+								{{$product->name}}
+							</a>
+							<div class="product__item-price-outer">
+								<div class="product__item-discount-price">
+									{{-- <del>400 Tk.</del> --}}
+									<del>{{$product->regular_price}}</del>
+								</div>
+								<div class="product__item-regular-price">
+									{{-- <span>300 Tk.</span> --}}
+									<span>{{$product->discount_price}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+----------------------------------->>>>>>>>>>>>>>>>>>>>>>
 
 //    product details  use slug >>> $id
 
@@ -314,6 +406,7 @@ public function productDetails($id){
 **********index.blade.php >>>> use slug to id 
 ***********       .$product->id  changed >>> .$product->slug
 
+
 >> <a href="{{url('product-details/'.$product->id)}}" class="product__item-image-inner">
 
 Route::get('/product-details/{slug}',[FrontendController::class, 'productDetails'])->name('product.details');
@@ -321,14 +414,14 @@ Route::get('/product-details/{slug}',[FrontendController::class, 'productDetails
 
 
 <div class="product__item-image-outer">
-						{{-- <a href="{{url('product-details/'.$product->id)}}" class="product__item-image-inner"> --}}
-							<a href="{{url('product-details/'.$product->slug)}}" class="product__item-image-inner">
-							{{-- <img src="{{asset('/assets/images/product.png')}}" alt="Product Image" /> --}}
-							<img src="{{asset('backend/images/product/'.$product->image)}}" alt="Product Image" />
-						</a>
+{{-- <a href="{{url('product-details/'.$product->id)}}" class="product__item-image-inner"> --}}
+<a href="{{url('product-details/'.$product->slug)}}" class="product__item-image-inner">
+{{-- <img src="{{asset('/assets/images/product.png')}}" alt="Product Image" /> --}}
+<img src="{{asset('backend/images/product/'.$product->image)}}" alt="Product Image" />
+</a>
 
 
-
+******index.blade.php ---->>>> .$product->id ----$product->slug 
 .$product->id  changed >>> .$product->slug
 http://127.0.0.1:8000/product-details/14 >>> changed
 >>>>http://127.0.0.1:8000/product-details/beauty

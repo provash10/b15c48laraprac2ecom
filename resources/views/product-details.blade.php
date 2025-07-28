@@ -45,7 +45,8 @@
                                             <div class="product-details-select-items-wrap">
                                                 @foreach ($product->color as $colorName)
                                                     <div class="product-details-select-item-outer">
-                                                   <input type="radio" name="color" id="color" value="Red" class="category-item-radio">
+                                                   {{-- <input type="radio" name="color" id="color" value="Red" class="category-item-radio"> --}}
+                                                   <input type="radio" name="color" id="color" value="{{$colorName->color_name}}" class="category-item-radio">
                                                     <label for="color" class="category-item-label">
                                                      {{-- Red --}}
                                                      {{$colorName->color_name}}
@@ -57,7 +58,8 @@
                                         <div class="product-details-select-items-wrap">
                                             @foreach ($product->size as $sizeName)
                                                 <div class="product-details-select-item-outer">
-                                                <input type="radio" name="size" value="XXl" class="category-item-radio">
+                                                {{-- <input type="radio" name="size" value="XXl" class="category-item-radio"> --}}
+                                                <input type="radio" name="size" value="{{$sizeName->size_name}}" class="category-item-radio">
                                                 {{-- <label for="size" class="category-item-label">XXl</label> --}}
                                                 <label for="size" class="category-item-label">{{$sizeName->size_name}}</label>
                                             </div>
@@ -100,11 +102,14 @@
                                             Description
                                         </button>
                                     </li>
+                                    
+                                    {{-- Review --}}
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="pills-review-tab" data-bs-toggle="pill" data-bs-target="#pills-review" type="button" role="tab" aria-controls="pills-review" aria-selected="true">
                                             Review
                                         </button>
                                     </li>
+
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="pills-policy-tab" data-bs-toggle="pill" data-bs-target="#pills-policy" type="button" role="tab" aria-controls="pills-policy" aria-selected="true">
                                             Product Policy
@@ -118,29 +123,68 @@
                                         {{-- {{$product->description}} --}}
                                         {{!!$product->description!!}}
                                     </div>
+
                                     <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
-                                        <div class="review-item-wrapper">
+                                        @foreach ($product->review as $data)
+                                            <div class="review-item-wrapper">
+                                               {{-- reviewer photo/icon --}}
                                             <div class="review-item-left">
-                                                <i class="fas fa-user"></i>
+                                                {{-- <i class="fas fa-user"></i> --}}
+                                                <img src="{{asset('backend/images/review/'.$data-image)}}" alt="reviewer image" height="100" width="100">
                                             </div>
                                             <div class="review-item-right">
                                                 <h4 class="review-author-name">
-                                                    Saidul Islam 
+                                                    {{-- Saidul Islam  --}}
+                                                    {{$data->customer_name}}
                                                     <span class=" d-inline bg-danger badge-sm badge text-white">Verified</span>
                                                 </h4>
-                                                <p class="review-item-message">
-                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis minus, ut unde laudantium accusamus odio nam officia aperiam excepturi quis nesciunt eveniet eligendi.
+                                                {{-- <p class="review-item-message">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis minus, ut unde laudantium accusamus odio nam officia aperiam excepturi quis nesciunt eveniet eligendi. --}}
+                                                    {{!!$data->message!!}}
                                                 </p>
                                                 <span class="review-item-rating-stars">
+                                                    {{-- <i class="fa-star fas"></i>
+                                                    <i class="fa-star fas"></i>
+                                                    <i class="fa-star fas"></i>
+                                                    <i class="fa-star fas"></i>
+                                                    <i class="fa-star fas"></i> --}}
+                                                    @if ($data->rating == 5)
+                                                        <i class="fa-star fas"></i>
                                                     <i class="fa-star fas"></i>
                                                     <i class="fa-star fas"></i>
                                                     <i class="fa-star fas"></i>
                                                     <i class="fa-star fas"></i>
+
+                                                    @elseif ($data->rating == 4)
                                                     <i class="fa-star fas"></i>
+                                                    <i class="fa-star fas"></i>
+                                                    <i class="fa-star fas"></i>
+                                                    <i class="fa-star fas"></i>
+
+                                                    @elseif ($data->rating == 3)
+                                                    <i class="fa-star fas"></i>
+                                                    <i class="fa-star fas"></i>
+                                                    <i class="fa-star fas"></i>
+                                                    
+                                                    @elseif ($data->rating == 2)
+                                                    <i class="fa-star fas"></i>
+                                                    <i class="fa-star fas"></i>
+                                                   
+                                                  
+                                                    @elseif ($data->rating == 1)
+                                                    <i class="fa-star fas"></i>
+                                                   
+                                                    
+                                                        
+                                                    @endif
+
                                                 </span>
                                             </div>
                                         </div>
+                                        @endforeach
+                                        
                                     </div>
+
                                     <div class="tab-pane fade" id="pills-policy" role="tabpanel" aria-labelledby="pills-policy-tab">
                                         {{-- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis minus,
                                         ut unde laudantium accusamus odio nam officia aperiam excepturi quis nesciunt eveniet eligendi --}}
@@ -152,16 +196,22 @@
                             </div>
                         </div>
                     </div>
+                    {{-- category list product-details page --}}
                     <div class="col-lg-3 col-md-12">
                         <div class="product-details-sidebar">
                             <div class="product-details-categoris">
                                 <h3 class="product-details-title">
                                     Category
                                 </h3>
-                                <a href="#" class="category-item-outer">
-                                    <img src="{{asset('/assets/images/product.png')}}" alt="category image">
-                                    Test Category
+                                @foreach ($categories as $category)
+                                    {{-- <a href="#" class="category-item-outer"> --}}
+                                    <a href="{{url('/category-products')}}" class="category-item-outer">
+                                    {{-- <img src="{{asset('/assets/images/product.png')}}" alt="category image"> --}}
+                                    <img src="{{asset('/backend/images/category/'.$category->image)}}" alt="category image">
+                                    {{-- Test Category --}}
+                                    {{$category->name}}
                                 </a>
+                                @endforeach
                             </div>
                         </div>
                     </div>

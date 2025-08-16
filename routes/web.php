@@ -30,8 +30,13 @@ Route::get('/contact-us',[FrontendController::class, 'contactUs']);
 Route::get('/product-details/{slug}',[FrontendController::class, 'productDetails']);
 Route::get('/type-products',[FrontendController::class, 'typeProducts']);
 
+//Cart Route 
+Route::get('/add-to-cart/{id}',[FrontendController::class, 'addToCart']);
+
+
 //Admin Login
 Route::get('/admin/login',[AdminController::class, 'adminLogin']);
+
 
 Auth::routes();
 

@@ -346,10 +346,13 @@ public function productDetails($slug){
     return view('product-details', compact('product'));
 }
 
-46.00 min >>> All hot, new, regular, discount page ar 2 position product-details/
-              >>> {{-- <a href="{{url('/product-details')}}" class="product__item-image-inner"> --}}
-             .$product->id -----> .$product->slug  kore dile 
-             product url product name onujayi hobe ....check any product url  id=slug   
+46.00 min >>> 
+All hot, new, regular, discount page ar 2 position product-details/
+       >>> {{-- <a href="{{url('/product-details')}}" class="product__item-image-inner"> --}}
+   .$product->id -----> .$product->slug  kore dile 
+    product url product name onujayi hobe ....check any product url  id=slug   
+
+********http://127.0.0.1:8000/product-details/headphone-a101
 
 @foreach ($newProducts as $product)
 						<div class="product__item-outer">
@@ -390,7 +393,9 @@ public function productDetails($slug){
 						</div>
 					</div>
 
------------------------------------>>>>>>>>>>>>>>>>>>>>>>
+----------------------------------->>>>>>>>>>>>>>>>>>>>>>????????>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>??????????????>>
+
+********************************46.00 Min Extra Note*****************----------
 
 //    product details  use slug >>> $id
 
@@ -431,11 +436,14 @@ http://127.0.0.1:8000/product-details/beauty-700
 ****Note: jodi slug na ase tahole new product add korte hobe.
          Or ager product delete kore new product add korte hobe.
 --------------------------------------------------------------------
+
+
 *****problem: GalleryImage >>> edit korle image add hosse with ager  image 
-fixed it from funtion >>>> productEdit >>>> galleryImage >>>>ok
+fixed it from function >>>> productEdit >>>> galleryImage >>>>ok
 
 ***** 55.00 min 
 Product-details page Right Side Category List >>>>
+*****function a category get kore nia aste hobe....
 
 *****FrontendController.php>>> public function productDetails($slug){
 $categories = category::get();
@@ -445,10 +453,28 @@ $categories = category::get();
 
 product-details.blade.php >>> 
 <a href="#" class="category-item-outer">
-                            <img src="{{asset('/assets/images/product.png')}}" alt="category image">
-                            Test Category
-                        </a>
-----------------------------------
+<img src="{{asset('/assets/images/product.png')}}" alt="category image">
+ Test Category
+  </a>
+
+after----------->>
+link >>> leftside Categories link ---> http://127.0.0.1:8000/category-products
+**** product serial mainatian orderBy('id', 'desc')
+ $hotProducts = Product::where('product_type', 'hot')->orderBy('id', 'desc')->get();
+
+**** // $categories = Category::get();
+        $categories = Category::orderBy('id', 'desc')->get();
+
+@foreach ($categories as $category)
+                                    {{-- <a href="#" class="category-item-outer"> --}}
+                                    <a href="{{url('/category-products')}}" class="category-item-outer">
+                                    {{-- <img src="{{asset('/assets/images/product.png')}}" alt="category image"> --}}
+                                    <img src="{{asset('/backend/images/category/'.$category->image)}}" alt="category image">
+                                    {{-- Test Category --}}
+                                    {{$category->name}}
+                                </a>
+                                @endforeach
+-------------------------------------------------
 
 
 *****FrontendController.php>>> public function productDetails($slug){
@@ -557,20 +583,16 @@ class FrontendController extends Controller
 index.blade.php >>> Category >>> 
 
 *****before
-<div class="section-title-outer">
-				<h1 class="title">
-					Categories
-				</h1>
-			</div>
-			<div class="categoris-items-wrapper owl-carousel">
-				<a href="{{url('/category-products')}}" class="categoris-item">
-					<img src="{{asset('/assets/images/product.png')}}" alt="category" />
-					<h6 class="categoris-name">
-						Test Category
-					</h6>
-					<span class="items-number">1 items</span>
-				</a>
-			</div>
+<div class="categoris-items-wrapper owl-carousel">
+					<a href="{{url('/category-products')}}" class="categoris-item">
+						<img src="{{asset('/assets/images/product.png')}}" alt="category" />
+						<h6 class="categoris-name">
+							Test Category
+						</h6>
+						<span class="items-number">1 items</span>
+					</a>
+				</div>
+
 ******after
 
 <div class="section-title-outer">
